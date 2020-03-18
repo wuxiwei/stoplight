@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  title: Shop API
+  version: '1.0'
+  description: 店铺API
+servers:
+  - url: 'https://api.sandbox.lianlianglobal.com/shop /v1'
+    description: Sandbox
+  - url: 'https://api.lianlianglobal.com/shop /v1'
+    description: Production
+paths:
+  /shops:
+    get:
+      summary: GET shops
+      tags:
+        - shop
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShopInfo'
+      operationId: get-shops
+      description: 获取店铺列表
+      requestBody: {}
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - Amazon
+              - PAYPAL
+              - Ebay
+              - Wish
+              - CDiscount
+              - Rakuten
+              - DeRakuten
+              - Mercado
+              - Yandex
+          in: query
+          name: platform
+          description: 平台类型
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: currency
+          required: true
+          description: 币种
+components:
+  schemas:
+    ShopInfo:
+      title: ShopInfo
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: 账户ID
+        platFormId:
+          type: string
+          description: 归属平台
+        platform:
+          type: string
+          description: 平台类型
+        currency:
+          type: string
+          description: 平台币种
+        sellerId:
+          type: string
+          description: 卖家编号
+      required:
+        - accountId
+        - platFormId
+        - platform
+        - currency
+        - sellerId
+      x-tags:
+        - shop

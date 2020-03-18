@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: Bankcard API
+  version: '1.0'
+  description: 银行卡API
+servers:
+  - url: 'https://api.sandbox.lianlianglobal.com/bankcard/v1'
+    description: Sandbox
+  - url: 'https://api.lianlianglobal.com/bankcard/v1'
+    description: Production
+paths:
+  /bankcards:
+    get:
+      summary: GET bankcards
+      tags:
+        - bankcard
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: string
+                  list:
+                    $ref: '#/components/schemas/BankCardInfo'
+      operationId: get-bankcards
+      description: 获取银行卡列表
+      requestBody: {}
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: currencyCode
+          description: 币种
+        - schema:
+            type: string
+          in: query
+          name: pageSize
+          description: 分页大小
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: pageNum
+          description: 页码
+          required: true
+components:
+  schemas:
+    BankCardInfo:
+      title: BankCardInfo
+      type: object
+      description: 银行卡对象
+      properties:
+        cardId:
+          type: string
+          description: 卡ID
+        bankCardNo:
+          type: string
+          description: 卡号
+        bankAccountName:
+          type: string
+          description: 持卡人姓名
+        bankName:
+          type: string
+          description: 银行名称
+        currency:
+          type: string
+          description: '币种列表 ["USD"]'
+        district:
+          type: string
+          description: 地区
+        cardType:
+          type: string
+          description: 银行卡类型 0-借记卡，1-信用卡，2-对公银行卡
+      required:
+        - cardId
+        - bankCardNo
+        - bankAccountName
+        - bankName
+        - currency
+        - district
+        - cardType
+      x-tags:
+        - bankcard
