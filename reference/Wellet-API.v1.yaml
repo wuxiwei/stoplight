@@ -81,7 +81,7 @@ paths:
       tags:
         - wallet
     parameters: []
-  /wallets:
+  '/wallets/currencyCode/{currencyCode}':
     get:
       summary: GET wallets
       tags:
@@ -102,14 +102,13 @@ paths:
                     description: 币种
       operationId: get-currency
       description: 根据多比币种获取余额
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: currencyCode
-          description: 币种
-          required: true
-    parameters: []
+      parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: currencyCode
+        in: path
+        required: true
   /wallet-recharges:
     post:
       summary: POST wallet-recharges
