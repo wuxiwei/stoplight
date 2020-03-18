@@ -4,10 +4,10 @@ info:
   version: '1.0'
   description: 多比API
 servers:
-  - url: 'https://api.sandbox.lianlianglobal.com/wallet/v1'
+  - url: 'https://global-api-sandbox.lianlianpay-inc.com/wallet/v1'
     description: Sandbox
   - description: Production
-    url: 'https://api.lianlianglobal.com/wallet/v1'
+    url: 'https://global-open-api.lianlianpay.com/wallet/v1'
 paths:
   /wallet-withdraws:
     post:
