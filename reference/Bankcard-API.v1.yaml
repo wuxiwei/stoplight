@@ -6,7 +6,7 @@ info:
 servers:
   - url: 'https://global-api-sandbox.lianlianpay-inc.com/bankcard/v1'
     description: Sandbox
-  - url: 'https://global-open-api.lianlianpay.com/bankcard/v1'
+  - url: 'https://global-api.lianlianpay.com/bankcard/v1'
     description: Production
 paths:
   /bankcards:
