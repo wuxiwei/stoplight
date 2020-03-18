@@ -92,14 +92,14 @@ paths:
           content:
             application/json:
               schema:
+                type: object
                 properties:
-                  withdrawAmount:
+                  balance:
                     type: string
                     description: 余额
                   currencyCode:
                     type: string
                     description: 币种
-                type: object
       operationId: get-currency
       description: 根据多比币种获取余额
       parameters:
