@@ -20,9 +20,12 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ShopInfo'
+                type: object
+                properties:
+                  total:
+                    type: string
+                  list:
+                    $ref: '#/components/schemas/ShopInfo'
       operationId: get-shops
       description: 获取店铺列表
       requestBody: {}
@@ -37,6 +40,18 @@ paths:
           in: query
           name: region
           description: 地区
+        - schema:
+            type: string
+          in: query
+          name: pageSize
+          description: 分页大小
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: pageNum
+          description: 页码
+          required: true
 components:
   schemas:
     ShopInfo:
