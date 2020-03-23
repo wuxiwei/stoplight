@@ -33,7 +33,7 @@ paths:
         - schema:
             type: string
           in: query
-          name: currencyCode
+          name: currency
           description: 币种
         - schema:
             type: string

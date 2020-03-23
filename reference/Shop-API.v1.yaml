@@ -11,7 +11,7 @@ servers:
 paths:
   /shops:
     get:
-      summary: GET shops
+      summary: 获取店铺列表
       tags:
         - shop
       responses:
@@ -29,52 +29,87 @@ paths:
       parameters:
         - schema:
             type: string
-            enum:
-              - Amazon
-              - PAYPAL
-              - Ebay
-              - Wish
-              - CDiscount
-              - Rakuten
-              - DeRakuten
-              - Mercado
-              - Yandex
           in: query
           name: platform
           description: 平台类型
-          required: true
         - schema:
             type: string
           in: query
-          name: currency
-          required: true
-          description: 币种
+          name: region
+          description: 地区
 components:
   schemas:
     ShopInfo:
       title: ShopInfo
       type: object
+      x-tags:
+        - shop
+      description: ''
       properties:
-        accountId:
+        platformId:
           type: string
-          description: 账户ID
-        platFormId:
-          type: string
-          description: 归属平台
+          description: 平台id
         platform:
           type: string
           description: 平台类型
-        currency:
-          type: string
-          description: 平台币种
         sellerId:
           type: string
           description: 卖家编号
+        id:
+          type: string
+          description: 店铺id
+        shopName:
+          type: string
+          description: 店铺名称
+        status:
+          type: string
+          description: 状态
+        region:
+          type: string
+          description: 地区
+        accountInfo:
+          type: object
+          description: 账号信息
+          required:
+            - accountId
+            - virtualAccount
+            - currency
+            - accountName
+            - region
+            - bankName
+            - appendInfo
+          properties:
+            accountId:
+              type: string
+              description: 账号id
+            virtualAccount:
+              type: string
+              description: 虚拟账号
+            currency:
+              type: string
+              description: 币种
+            accountName:
+              type: string
+              description: 户名
+            region:
+              type: string
+              description: 银行地区
+            bankName:
+              type: string
+              description: 银行名称
+            appendInfo:
+              type: string
+              description: 银行账号附加信息
+        createTime:
+          type: string
+          description: 创建时间
       required:
-        - accountId
-        - platFormId
+        - platformId
         - platform
-        - currency
         - sellerId
-      x-tags:
-        - shop
+        - id
+        - shopName
+        - status
+        - region
+        - accountInfo
+        - createTime

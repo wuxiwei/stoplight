@@ -21,12 +21,6 @@ paths:
               schema:
                 type: object
                 description: ''
-                properties:
-                  withdrawId:
-                    type: string
-                    description: 提现单号
-                required:
-                  - withdrawId
         '400':
           description: "错误码\n\ncode\t| message\n-|-\n009006\t| 您有正在受理的提现申请，请稍后再试\n009007\t| 假期期间暂不支持使用\n100003\t| 用户被锁定\n010001\t| 用户校验失败\n010002\t| kyc状态未通过\n010003\t| 用户kyc未审核\n010004\t| 您的企业信息不完整，请联系客服处理\n010005\t| 用户kyc信息不存在\n009014\t| 提现银行卡不符合用户提现规则\n009009\t| 银行卡不存在\n009010\t| 银行卡状态异常\n009011\t| 提现银行卡不支持当前提现币种\n100003\t| 用户被锁定\n009012\t| 该银行卡企业“贸易外汇收支企业名录”状态异常，无法提现至该银行卡\n009013\t| 该银行卡企业未在当地外管局办理名录登记，无法提现至该银行卡\n009014\t| 提现银行卡不符合用户提现规则\n009015\t| 银行分发渠道查询失败\n150003\t| 账户余额查询失败\n150004\t| 账户余额不足\n009016\t| 用户信息风控管理拒绝\n009017\t| 提现金额未达到起提线\n009018\t| 验证码错误\n009019\t| 外部单号重复\n010007\t| 提现银行卡户名与KYC名称不符"
           headers: {}
@@ -50,19 +44,19 @@ paths:
             schema:
               type: object
               properties:
-                withdrawCurrency:
+                currency:
                   type: string
                   description: 提现币种
                 verificationCode:
                   type: string
                   description: 短信验证码
-                bankCardId:
+                bankAccountId:
                   type: string
                   description: 银行卡ID
                 withdrawAmount:
                   type: string
                   description: 金额
-                aimCurrencyCode:
+                aimCurrency:
                   type: string
                   description: 目标币种
                 externalTransId:
@@ -71,17 +65,17 @@ paths:
                   minLength: 8
                   maxLength: 32
               required:
-                - withdrawCurrency
+                - currency
                 - verificationCode
-                - bankCardId
+                - bankAccountId
                 - withdrawAmount
-                - aimCurrencyCode
+                - aimCurrency
                 - externalTransId
         description: ''
       tags:
         - wallet
     parameters: []
-  '/wallets/currencyCode/{currencyCode}':
+  '/wallets/currency/{currency}':
     get:
       summary: GET wallets
       tags:
@@ -96,17 +90,26 @@ paths:
                 properties:
                   balance:
                     type: string
-                    description: 余额
-                  currencyCode:
+                    description: 可用余额
+                  currency:
                     type: string
                     description: 币种
+                  status:
+                    type: string
+                    description: 状态
+                  createTime:
+                    type: string
+                    description: 创建时间
+                  avaExchangeBalance:
+                    type: string
+                    description: 可汇兑余额
       operationId: get-currency
       description: 根据多比币种获取余额
       parameters: []
     parameters:
       - schema:
           type: string
-        name: currencyCode
+        name: currency
         in: path
         required: true
   /wallet-recharges:
@@ -121,12 +124,6 @@ paths:
               schema:
                 type: object
                 description: ''
-                properties:
-                  rechargeId:
-                    type: string
-                    description: 充值单号
-                required:
-                  - rechargeId
               examples: {}
         '400':
           description: "错误码\n\ncode\t| message\n-|-\n009002\t| 您有正在受理的充值申请，请稍后再试\n010001\t| 用户校验失败\n010002\t| kyc状态未通过\n009001\t| 多比查询失败或未开通\n150001\t| 店铺查询失败\n150002\t| 店铺状态异常\n150003\t| 账户余额查询失败\n150004\t| 账户余额不足\n009003\t| 充值币种不统一\n009004\t| 充值原始金额为0\n009019\t| 外部单号重复\n009008\t| 充值平台不统一"
@@ -139,14 +136,14 @@ paths:
                     type: string
                   message:
                     type: string
-      description: 多比充值
+      description: 多比转入
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                rechargeCurrency:
+                currency:
                   type: string
                   description: 充值币种
                 rechargeDetailList:
@@ -160,7 +157,7 @@ paths:
                   minLength: 8
                   maxLength: 32
               required:
-                - rechargeCurrency
+                - currency
                 - rechargeDetailList
                 - externalTransId
             examples: {}
@@ -168,7 +165,7 @@ paths:
       tags:
         - wallet
     get:
-      summary: GET wallet-recharges
+      summary: list wallet-recharges
       operationId: get-recharge
       responses:
         '200':
@@ -186,13 +183,10 @@ paths:
                     items:
                       type: object
                       properties:
-                        rechargeId:
-                          type: string
-                          description: 充值单号
                         createTime:
                           type: string
                           description: 创建时间
-                        rechargeCurrencyCode:
+                        currency:
                           type: string
                           description: 充值币种
                         rechargeAmount:
@@ -201,27 +195,36 @@ paths:
                         feeAmount:
                           type: string
                           description: 手续费
-                        feeCurrency:
+                        rechargeDetailList:
+                          type: array
+                          description: 明细
+                          items:
+                            $ref: '#/components/schemas/RechargeDetail'
+                        externalTransId:
                           type: string
-                          description: 手续费币种
+                          description: 第三方单号
+                        status:
+                          type: string
+                          description: 状态
                       required:
-                        - rechargeId
                         - createTime
-                        - rechargeCurrencyCode
+                        - currency
                         - rechargeAmount
                         - feeAmount
-                        - feeCurrency
+                        - rechargeDetailList
+                        - externalTransId
+                        - status
                 required:
                   - total
                   - list
-      description: 多比充值记录
+      description: 多比转入记录
       requestBody:
         description: ''
       parameters:
         - schema:
             type: string
           in: query
-          name: currencyCode
+          name: currency
           description: 币种
         - schema:
             type: string
@@ -256,15 +259,15 @@ components:
       title: RechargeDetail
       type: object
       description: 充值明细
+      x-tags:
+        - wallet
       properties:
-        accountId:
+        shopAccountId:
           type: string
           description: 账户ID
         amount:
           type: string
           description: 金额
       required:
-        - accountId
+        - shopAccountId
         - amount
-      x-tags:
-        - wallet
