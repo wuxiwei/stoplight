@@ -136,6 +136,9 @@
         "title": "WithdrawInfo",
         "type": "object",
         "description": "",
+        "x-tags": [
+          "withdraw"
+        ],
         "properties": {
           "externalTransId": {
             "type": "string",
@@ -143,11 +146,11 @@
           },
           "withdrawStatus": {
             "type": "string",
-            "description": "状态"
+            "description": "状态 0\\1提现中 2提现成功 3提现失败"
           },
           "withdrawType": {
             "type": "string",
-            "description": "提现类型"
+            "description": "提现类型 BALANCE店铺提现 WALLET多比提现 CREDIT提前宝"
           },
           "platform": {
             "type": "string",
@@ -232,9 +235,6 @@
           "bankName",
           "bankAccountNumber",
           "withdrawDetailList"
-        ],
-        "x-tags": [
-          "withdraw"
         ]
       },
       "WithdrawDetail": {

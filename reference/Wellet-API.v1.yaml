@@ -211,7 +211,7 @@ paths:
                           description: 第三方单号
                         status:
                           type: string
-                          description: 状态
+                          description: "状态 0\\1转入中 2转入成功"
                       required:
                         - createTime
                         - currency
