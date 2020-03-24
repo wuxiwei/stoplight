@@ -232,6 +232,9 @@
           "bankName",
           "bankAccountNumber",
           "withdrawDetailList"
+        ],
+        "x-tags": [
+          "withdraw"
         ]
       },
       "WithdrawDetail": {
@@ -280,6 +283,9 @@
           "feeAmount",
           "actualFeeAmount",
           "feeCurrency"
+        ],
+        "x-tags": [
+          "withdraw"
         ]
       }
     }
