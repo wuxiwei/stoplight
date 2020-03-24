@@ -4,9 +4,9 @@ info:
   version: '1.0'
   description: 店铺API
 servers:
-  - url: 'https://global-api-sandbox.lianlianpay-inc.com/shop /v1'
+  - url: 'https://global-api-sandbox.lianlianpay-inc.com/collection/v1'
     description: Sandbox
-  - url: 'https://global-api.lianlianpay.com/shop /v1'
+  - url: 'https://global-api.lianlianpay.com/collection /v1'
     description: Production
 paths:
   /shops:
@@ -25,13 +25,25 @@ paths:
                   total:
                     type: string
                   list:
-                    $ref: '#/components/schemas/ShopInfo'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ShopInfo'
       operationId: get-shops
-      description: 获取店铺列表
+      description: 按创建时间排序
       requestBody: {}
       parameters:
         - schema:
             type: string
+            enum:
+              - Amazon
+              - PAYPAL
+              - Ebay
+              - Wish
+              - CDiscount
+              - Rakuten
+              - DeRakuten
+              - Mercado
+              - Yandex
           in: query
           name: platform
           description: 平台类型

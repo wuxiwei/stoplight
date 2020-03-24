@@ -1,0 +1,287 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Withdraw-API",
+    "version": "1.0",
+    "description": "提现API"
+  },
+  "servers": [
+    {
+      "url": "https://global-api-sandbox.lianlianpay-inc.com/collection/v1",
+      "description": "Sandbox"
+    },
+    {
+      "url": "https://global-api.lianlianpay.com/collection/v1",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/withdraws": {
+      "get": {
+        "summary": "获取提现列表",
+        "tags": [
+          "withdraw"
+        ],
+        "responses": {},
+        "operationId": "get-withdraws",
+        "description": "",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "startTime",
+            "description": "开始时间",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "endTime",
+            "description": "结束时间",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "pageSize",
+            "description": "分页大小",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "pageNum",
+            "description": "页码",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "BALANCE",
+                "WALLET"
+              ]
+            },
+            "in": "query",
+            "name": "withdrawType",
+            "description": "提现类型"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "platform",
+            "description": "平台"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "currency",
+            "description": "币种"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "withdrawStatus",
+            "description": "状态 1提现中2提现成功3提现失败"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "externalTransId",
+            "description": "第三方单号"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "total": {
+                    "type": "string"
+                  },
+                  "list": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WithdrawInfo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WithdrawInfo": {
+        "title": "WithdrawInfo",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "externalTransId": {
+            "type": "string",
+            "description": "第三方单号"
+          },
+          "withdrawStatus": {
+            "type": "string",
+            "description": "状态"
+          },
+          "withdrawType": {
+            "type": "string",
+            "description": "提现类型"
+          },
+          "platform": {
+            "type": "string",
+            "description": "平台"
+          },
+          "withdrawAmount": {
+            "type": "string",
+            "description": "提现金额"
+          },
+          "withdrawCurrency": {
+            "type": "string",
+            "description": "提现币种"
+          },
+          "arrivalAmount": {
+            "type": "string",
+            "description": "到账金额"
+          },
+          "arrivalCurrency": {
+            "type": "string",
+            "description": "到账币种"
+          },
+          "feeAmount": {
+            "type": "string",
+            "description": "应收手续费"
+          },
+          "actualFeeAmount": {
+            "type": "string",
+            "description": "实收手续费"
+          },
+          "feeCurrency": {
+            "type": "string",
+            "description": "手续费币种"
+          },
+          "createTime": {
+            "type": "string",
+            "description": "创建时间"
+          },
+          "rate": {
+            "type": "string",
+            "description": "提现汇率"
+          },
+          "rateTime": {
+            "type": "string",
+            "description": "结汇时间"
+          },
+          "bankAccountName": {
+            "type": "string",
+            "description": "提现银行账号户名"
+          },
+          "bankName": {
+            "type": "string",
+            "description": "银行名称"
+          },
+          "bankAccountNumber": {
+            "type": "string",
+            "description": "银行账号"
+          },
+          "withdrawDetailList": {
+            "type": "array",
+            "description": "明细",
+            "items": {
+              "$ref": "#/components/schemas/WithdrawDetail"
+            }
+          }
+        },
+        "required": [
+          "externalTransId",
+          "withdrawStatus",
+          "withdrawType",
+          "platform",
+          "withdrawAmount",
+          "withdrawCurrency",
+          "arrivalAmount",
+          "arrivalCurrency",
+          "feeAmount",
+          "actualFeeAmount",
+          "feeCurrency",
+          "createTime",
+          "rate",
+          "rateTime",
+          "bankAccountName",
+          "bankName",
+          "bankAccountNumber",
+          "withdrawDetailList"
+        ]
+      },
+      "WithdrawDetail": {
+        "title": "WithdrawDetail",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "明细流水号"
+          },
+          "shopName": {
+            "type": "string",
+            "description": "店铺名称"
+          },
+          "shopAccountId": {
+            "type": "string",
+            "description": "账号id"
+          },
+          "amount": {
+            "type": "string",
+            "description": "金额"
+          },
+          "currency": {
+            "type": "string",
+            "description": "币种"
+          },
+          "feeAmount": {
+            "type": "string",
+            "description": "应收手续费"
+          },
+          "actualFeeAmount": {
+            "type": "string",
+            "description": "实收手续费"
+          },
+          "feeCurrency": {
+            "type": "string",
+            "description": "手续费币种"
+          }
+        },
+        "required": [
+          "id",
+          "shopName",
+          "shopAccountId",
+          "amount",
+          "currency",
+          "feeAmount",
+          "actualFeeAmount",
+          "feeCurrency"
+        ]
+      }
+    }
+  }
+}

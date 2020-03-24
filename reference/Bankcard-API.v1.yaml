@@ -4,14 +4,14 @@ info:
   version: '1.0'
   description: 银行卡API
 servers:
-  - url: 'https://global-api-sandbox.lianlianpay-inc.com/bankcard/v1'
+  - url: 'https://global-api-sandbox.lianlianpay-inc.com/collection/v1'
     description: Sandbox
-  - url: 'https://global-api.lianlianpay.com/bankcard/v1'
+  - url: 'https://global-api.lianlianpay.com/collection/v1'
     description: Production
 paths:
   /bankcards:
     get:
-      summary: GET bankcards
+      summary: 查询客户提现银行账号信息
       tags:
         - bankcard
       responses:
@@ -25,9 +25,11 @@ paths:
                   total:
                     type: string
                   list:
-                    $ref: '#/components/schemas/BankCardInfo'
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BankCardInfo'
       operationId: get-bankcards
-      description: 获取银行卡列表
+      description: ''
       requestBody: {}
       parameters:
         - schema:
@@ -50,16 +52,18 @@ paths:
 components:
   schemas:
     BankCardInfo:
-      title: BankCardInfo
+      title: BankAccountInfo
       type: object
-      description: 银行卡对象
+      description: 银行账号对象
+      x-tags:
+        - bankcard
       properties:
-        cardId:
+        id:
           type: string
-          description: 卡ID
-        bankCardNo:
+          description: 账号ID
+        bankAccountNumber:
           type: string
-          description: 卡号
+          description: 银行账号
         bankAccountName:
           type: string
           description: 持卡人姓名
@@ -72,16 +76,14 @@ components:
         district:
           type: string
           description: 地区
-        cardType:
+        bankAccountType:
           type: string
-          description: 银行卡类型 0-借记卡，1-信用卡，2-对公银行卡
+          description: 银行卡类型 0-借记卡，1-信用卡，2-对公银行账号
       required:
-        - cardId
-        - bankCardNo
+        - id
+        - bankAccountNumber
         - bankAccountName
         - bankName
         - currency
         - district
-        - cardType
-      x-tags:
-        - bankcard
+        - bankAccountType

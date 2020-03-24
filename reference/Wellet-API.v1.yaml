@@ -4,14 +4,14 @@ info:
   version: '1.0'
   description: 多比API
 servers:
-  - url: 'https://global-api-sandbox.lianlianpay-inc.com/wallet/v1'
+  - url: 'https://global-api-sandbox.lianlianpay-inc.com/collection/v1'
     description: Sandbox
   - description: Production
-    url: 'https://global-api.lianlianpay.com/wallet/v1'
+    url: 'https://global-api.lianlianpay.com/collection/v1'
 paths:
   /wallet-withdraws:
     post:
-      summary: POST wallet-withdraws
+      summary: 多比提现操作
       operationId: post-withdraw
       responses:
         '200':
@@ -37,7 +37,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-      description: 多比提现
+      description: ''
       requestBody:
         content:
           application/json:
@@ -77,7 +77,7 @@ paths:
     parameters: []
   '/wallets/currency/{currency}':
     get:
-      summary: GET wallets
+      summary: 获取多比账号信息
       tags:
         - wallet
       responses:
@@ -103,8 +103,14 @@ paths:
                   avaExchangeBalance:
                     type: string
                     description: 可汇兑余额
+                required:
+                  - balance
+                  - currency
+                  - status
+                  - createTime
+                  - avaExchangeBalance
       operationId: get-currency
-      description: 根据多比币种获取余额
+      description: ''
       parameters: []
     parameters:
       - schema:
@@ -114,7 +120,7 @@ paths:
         required: true
   /wallet-recharges:
     post:
-      summary: POST wallet-recharges
+      summary: 多比转入操作
       operationId: post-recharge
       responses:
         '200':
@@ -136,7 +142,7 @@ paths:
                     type: string
                   message:
                     type: string
-      description: 多比转入
+      description: ''
       requestBody:
         content:
           application/json:
@@ -165,7 +171,7 @@ paths:
       tags:
         - wallet
     get:
-      summary: list wallet-recharges
+      summary: 获取多比转入记录
       operationId: get-recharge
       responses:
         '200':
@@ -176,7 +182,7 @@ paths:
                 type: object
                 properties:
                   total:
-                    type: integer
+                    type: string
                     description: 总数
                   list:
                     type: array
@@ -217,7 +223,7 @@ paths:
                 required:
                   - total
                   - list
-      description: 多比转入记录
+      description: ''
       requestBody:
         description: ''
       parameters:
