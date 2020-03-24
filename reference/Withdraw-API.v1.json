@@ -67,7 +67,8 @@
               "type": "string",
               "enum": [
                 "BALANCE",
-                "WALLET"
+                "WALLET",
+                "CREDIT"
               ]
             },
             "in": "query",
@@ -95,8 +96,8 @@
               "type": "string"
             },
             "in": "query",
-            "name": "withdrawStatus",
-            "description": "状态 1提现中2提现成功3提现失败"
+            "name": "status",
+            "description": "状态 \n\nid|message\n-|-\n1|提现中\n2|提现成功\n3|提现失败"
           },
           {
             "schema": {
@@ -144,13 +145,13 @@
             "type": "string",
             "description": "第三方单号"
           },
-          "withdrawStatus": {
+          "status": {
             "type": "string",
-            "description": "状态 0\\1提现中 2提现成功 3提现失败"
+            "description": "状态 \n\nid|message\n-|-\n1|提现中\n2|提现成功\n3|提现失败"
           },
           "withdrawType": {
             "type": "string",
-            "description": "提现类型 BALANCE店铺提现 WALLET多比提现 CREDIT提前宝"
+            "description": "提现类型 \n\nid|message\n-|-\nBALANCE|店铺提现\nWALLET|多比提现\nCREDIT|提前宝"
           },
           "platform": {
             "type": "string",
@@ -164,11 +165,11 @@
             "type": "string",
             "description": "提现币种"
           },
-          "arrivalAmount": {
+          "targetAmount": {
             "type": "string",
             "description": "到账金额"
           },
-          "arrivalCurrency": {
+          "targetCurrency": {
             "type": "string",
             "description": "到账币种"
           },
@@ -204,7 +205,7 @@
             "type": "string",
             "description": "银行名称"
           },
-          "bankAccountNumber": {
+          "bankAccountNo": {
             "type": "string",
             "description": "银行账号"
           },
@@ -218,13 +219,13 @@
         },
         "required": [
           "externalTransId",
-          "withdrawStatus",
+          "status",
           "withdrawType",
           "platform",
           "withdrawAmount",
           "withdrawCurrency",
-          "arrivalAmount",
-          "arrivalCurrency",
+          "targetAmount",
+          "targetCurrency",
           "feeAmount",
           "actualFeeAmount",
           "feeCurrency",
@@ -233,13 +234,16 @@
           "rateTime",
           "bankAccountName",
           "bankName",
-          "bankAccountNumber",
+          "bankAccountNo",
           "withdrawDetailList"
         ]
       },
       "WithdrawDetail": {
         "title": "WithdrawDetail",
         "type": "object",
+        "x-tags": [
+          "withdraw"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -251,7 +255,7 @@
           },
           "shopAccountId": {
             "type": "string",
-            "description": "账号id"
+            "description": "店铺账号id"
           },
           "amount": {
             "type": "string",
@@ -283,9 +287,6 @@
           "feeAmount",
           "actualFeeAmount",
           "feeCurrency"
-        ],
-        "x-tags": [
-          "withdraw"
         ]
       }
     }

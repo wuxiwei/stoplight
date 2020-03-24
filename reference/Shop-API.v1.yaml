@@ -90,13 +90,24 @@ components:
           description: 店铺名称
         status:
           type: string
-          description: 状态
+          description: |-
+            状态
+
+            id|message
+            -|-
+            0|待完善信息
+            1|待审核
+            2|审核通过
+            3|审核失败
+            4|注销
+            5|已迁移
+            6|未激活
         region:
           type: string
           description: 地区
         accountInfo:
           type: object
-          description: 账号信息
+          description: 收款银行账号信息
           required:
             - accountId
             - virtualAccount

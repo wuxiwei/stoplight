@@ -12,8 +12,6 @@ paths:
   /bankcards:
     get:
       summary: 查询客户提现银行账号信息
-      tags:
-        - bankcard
       responses:
         '200':
           description: OK
@@ -27,9 +25,9 @@ paths:
                   list:
                     type: array
                     items:
-                      $ref: '#/components/schemas/BankCardInfo'
-      operationId: get-bankcards
-      description: ''
+                      $ref: '#/components/schemas/BankAccountInfo'
+      operationId: get-bankAccounts
+      description: 该接口支持
       requestBody: {}
       parameters:
         - schema:
@@ -49,24 +47,26 @@ paths:
           name: pageNum
           description: 页码
           required: true
+      tags:
+        - bankAccount
 components:
   schemas:
-    BankCardInfo:
+    BankAccountInfo:
       title: BankAccountInfo
       type: object
-      description: 银行账号对象
+      description: 提现银行账号对象
       x-tags:
-        - bankcard
+        - bankAccount
       properties:
         id:
           type: string
           description: 账号ID
-        bankAccountNumber:
+        bankAccountNo:
           type: string
-          description: 银行账号
+          description: 提现银行账号
         bankAccountName:
           type: string
-          description: 持卡人姓名
+          description: 提现银行账号户名
         bankName:
           type: string
           description: 银行名称
@@ -78,10 +78,17 @@ components:
           description: 地区
         bankAccountType:
           type: string
-          description: 银行卡类型 0-借记卡，1-信用卡，2-对公银行账号
+          description: |
+            银行卡类型
+
+            id|message
+            -|-
+            0|借记卡
+            1|信用卡
+            2|对公银行账号
       required:
         - id
-        - bankAccountNumber
+        - bankAccountNo
         - bankAccountName
         - bankName
         - currency

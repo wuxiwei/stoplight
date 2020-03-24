@@ -11,7 +11,7 @@ servers:
 paths:
   /wallet-withdraws:
     post:
-      summary: 多比提现操作
+      summary: 多比钱包提现
       operationId: post-withdraw
       responses:
         '200':
@@ -52,11 +52,11 @@ paths:
                   description: 短信验证码
                 bankAccountId:
                   type: string
-                  description: 银行卡ID
+                  description: 提现银行账号ID
                 withdrawAmount:
                   type: string
                   description: 金额
-                aimCurrency:
+                targetCurrency:
                   type: string
                   description: 目标币种
                 externalTransId:
@@ -69,7 +69,7 @@ paths:
                 - verificationCode
                 - bankAccountId
                 - withdrawAmount
-                - aimCurrency
+                - targetCurrency
                 - externalTransId
         description: ''
       tags:
@@ -77,7 +77,7 @@ paths:
     parameters: []
   '/wallets/currency/{currency}':
     get:
-      summary: 获取多比账号信息
+      summary: 获取多比钱包账号余额信息
       tags:
         - wallet
       responses:
@@ -96,7 +96,16 @@ paths:
                     description: 币种
                   status:
                     type: string
-                    description: 状态
+                    description: |-
+                      状态
+
+                      id|message
+                      -|-
+                      1|正常
+                      2|冻结
+                      3|挂失
+                      4|注销
+                      5|已迁移
                   createTime:
                     type: string
                     description: 创建时间
@@ -120,7 +129,7 @@ paths:
         required: true
   /wallet-recharges:
     post:
-      summary: 多比转入操作
+      summary: 多比钱包转入
       operationId: post-recharge
       responses:
         '200':
@@ -171,7 +180,7 @@ paths:
       tags:
         - wallet
     get:
-      summary: 获取多比转入记录
+      summary: 获取多比钱包转入记录
       operationId: get-recharge
       responses:
         '200':
@@ -211,7 +220,7 @@ paths:
                           description: 第三方单号
                         status:
                           type: string
-                          description: "状态 0\\1转入中 2转入成功"
+                          description: "状态 \n\nid|message\n-|-\n1|转入中\n2|转入成功"
                       required:
                         - createTime
                         - currency
@@ -270,7 +279,7 @@ components:
       properties:
         shopAccountId:
           type: string
-          description: 账户ID
+          description: 店铺账号ID
         amount:
           type: string
           description: 金额
