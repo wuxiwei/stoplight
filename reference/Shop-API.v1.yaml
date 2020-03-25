@@ -29,7 +29,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/ShopInfo'
       operationId: get-shops
-      description: 根据平台类型和地区查询店铺列表，结果按创建时间排序。
+      description: 根据平台类型和地区查询店铺列表，结果按更新时间排序。
       requestBody: {}
       parameters:
         - schema:
@@ -173,6 +173,9 @@ components:
         createTime:
           type: string
           description: 创建时间
+        modifyTime:
+          type: string
+          description: 更新时间
       required:
         - platformId
         - platform
@@ -183,3 +186,4 @@ components:
         - region
         - accountInfo
         - createTime
+        - modifyTime
