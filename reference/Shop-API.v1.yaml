@@ -34,19 +34,51 @@ paths:
       parameters:
         - schema:
             type: string
-            enum:
-              - Amazon
-              - PAYPAL
-              - Ebay
-              - Wish
-              - CDiscount
-              - Rakuten
-              - DeRakuten
-              - Mercado
-              - Yandex
+            enum: []
           in: query
           name: platform
-          description: 平台类型
+          description: |-
+            平台类型
+
+            code|name
+            -|-
+            Amazon|亚马逊
+            FBA|亚马逊印度站（FBA）
+            Wish|WISH
+            Ebay|eBay
+            PAYPAL|PayPal
+            SHOPEE|SHOPEE
+            SOUQ|SOUQ
+            CDiscount|Cdiscount
+            Mercado|Mercadolibre
+            JDID|JD.ID(USD)
+            JDIDIDR|JD.ID
+            Rakuten|法国乐天
+            DeRakuten|德国乐天
+            BRINGLY|bringly
+            FNAC|fnac
+            SHOPIFY|Shopify
+            FRUUGO|fruugo
+            SELF_BUILD|自建站
+            QOO10|Qoo10
+            APPSTORE|AppStore
+            ALIEXPRESS|AliExpress
+            BIGCOMMERCE|Bigcommerce
+            MAGENTO|Magento
+            NOON|Noon
+            REAL_DE|real.de
+            MEESHO|Meesho
+            ALLEGRO|Allegro
+            ALLEGRO_PLN|Allegro
+            COUPANG|Coupang
+            DARTY|Darty
+            VOVA|Vova
+            B2W|B2W
+            ADSENSE|AdSense
+            ADMOB|AdMob
+            WIX|Wix
+            GOOGLE_SHOPPING_ACTIONS|Google Shopping Actions
+            EMAG|eMAG
         - schema:
             type: string
           in: query
