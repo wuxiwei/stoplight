@@ -27,7 +27,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/BankAccountInfo'
       operationId: get-bankAccounts
-      description: 该接口支持
+      description: 该接口支持按币种查询客户提现银行账号信息。
       requestBody: {}
       parameters:
         - schema:

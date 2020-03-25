@@ -37,7 +37,14 @@ paths:
               schema:
                 type: object
                 properties: {}
-      description: ''
+      description: |-
+        多比提现接口，提现前需要确认多比钱包账户余额大于提现金额，提现结果异步通知返回或调用方查询确认。
+
+        步骤1：调用获取多比钱包账号余额信息接口确定余额。
+
+        步骤2：调用获取短信验证码接口获取验证码。
+
+        步骤3：调用该提现接口。
       requestBody:
         content:
           application/json:
@@ -119,7 +126,7 @@ paths:
                   - createTime
                   - avaExchangeBalance
       operationId: get-currency
-      description: ''
+      description: 获取指定币种多比钱包信息以及余额。
       parameters: []
     parameters:
       - schema:
@@ -151,7 +158,7 @@ paths:
                     type: string
                   message:
                     type: string
-      description: ''
+      description: 将一个或多个同平台店铺收款账号的钱转入多比用于汇兑或付款，转入前需要确认店铺收款账号余额大于转入金额。
       requestBody:
         content:
           application/json:
@@ -232,7 +239,7 @@ paths:
                 required:
                   - total
                   - list
-      description: ''
+      description: 多比钱包转入列表查询，可以按币种进行查询，结果按创建时间排序。
       requestBody:
         description: ''
       parameters:

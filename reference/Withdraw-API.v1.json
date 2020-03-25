@@ -24,7 +24,7 @@
         ],
         "responses": {},
         "operationId": "get-withdraws",
-        "description": "",
+        "description": "接口聚合了店铺、多比、提前宝提现列表查询，结果按创建时间排序。",
         "parameters": [
           {
             "schema": {
@@ -167,11 +167,11 @@
           },
           "targetAmount": {
             "type": "string",
-            "description": "到账金额"
+            "description": "打款金额"
           },
           "targetCurrency": {
             "type": "string",
-            "description": "到账币种"
+            "description": "打款币种"
           },
           "feeAmount": {
             "type": "string",
