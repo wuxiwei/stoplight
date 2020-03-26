@@ -102,7 +102,6 @@ paths:
                     type: string
                     description: 币种
                   status:
-                    type: string
                     description: |-
                       状态
 
@@ -113,6 +112,7 @@ paths:
                       3|挂失
                       4|注销
                       5|已迁移
+                    type: integer
                   createTime:
                     type: string
                     description: 创建时间
