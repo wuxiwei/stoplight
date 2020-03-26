@@ -81,7 +81,7 @@
             },
             "in": "query",
             "name": "platform",
-            "description": "平台"
+            "description": "平台类型\n\ncode|name\n-|-\nAmazon|亚马逊\nFBA|亚马逊印度站（FBA）\nPAYPAL|PayPal\nSHOPEE|SHOPEE\nSOUQ|SOUQ\nCDiscount|Cdiscount\nMercado|Mercadolibre\nJDID|JD.ID(USD)\nJDIDIDR|JD.ID\nRakuten|法国乐天\nDeRakuten|德国乐天\nBRINGLY|bringly\nFNAC|fnac\nSHOPIFY|Shopify\nFRUUGO|fruugo\nSELF_BUILD|自建站\nQOO10|Qoo10\nAPPSTORE|AppStore\nALIEXPRESS|AliExpress\nBIGCOMMERCE|Bigcommerce\nMAGENTO|Magento\nNOON|Noon\nREAL_DE|real.de\nMEESHO|Meesho\nALLEGRO|Allegro\nALLEGRO_PLN|Allegro\nCOUPANG|Coupang\nDARTY|Darty\nVOVA|Vova\nB2W|B2W\nADSENSE|AdSense\nADMOB|AdMob\nWIX|Wix\nGOOGLE_SHOPPING_ACTIONS|Google Shopping Actions\nEMAG|eMAG"
           },
           {
             "schema": {
@@ -215,6 +215,14 @@
             "items": {
               "$ref": "#/components/schemas/WithdrawDetail"
             }
+          },
+          "feeRate": {
+            "type": "string",
+            "description": "手续费费率"
+          },
+          "creditFeeAmount": {
+            "type": "string",
+            "description": "提前宝手续费"
           }
         },
         "required": [
@@ -235,7 +243,9 @@
           "bankAccountName",
           "bankName",
           "bankAccountNo",
-          "withdrawDetailList"
+          "withdrawDetailList",
+          "feeRate",
+          "creditFeeAmount"
         ]
       },
       "WithdrawDetail": {
@@ -276,6 +286,10 @@
           "feeCurrency": {
             "type": "string",
             "description": "手续费币种"
+          },
+          "creditFeeAmount": {
+            "type": "string",
+            "description": "提前宝手续费"
           }
         },
         "required": [
@@ -286,7 +300,8 @@
           "currency",
           "feeAmount",
           "actualFeeAmount",
-          "feeCurrency"
+          "feeCurrency",
+          "creditFeeAmount"
         ]
       }
     }
