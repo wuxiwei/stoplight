@@ -226,7 +226,7 @@ paths:
                           type: string
                           description: 第三方单号
                         status:
-                          type: string
+                          type: integer
                           description: "状态 \n\nid|message\n-|-\n1|转入中\n2|转入成功"
                       required:
                         - createTime
@@ -272,6 +272,11 @@ paths:
           name: pageNum
           description: 页数
           required: true
+        - schema:
+            type: string
+          in: query
+          name: externalTransId
+          description: 第三方单号
       tags:
         - wallet
     parameters: []

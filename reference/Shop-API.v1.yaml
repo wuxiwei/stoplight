@@ -44,8 +44,6 @@ paths:
             -|-
             Amazon|亚马逊
             FBA|亚马逊印度站（FBA）
-            Wish|WISH
-            Ebay|eBay
             PAYPAL|PayPal
             SHOPEE|SHOPEE
             SOUQ|SOUQ
@@ -121,7 +119,7 @@ components:
           type: string
           description: 店铺名称
         status:
-          type: string
+          type: integer
           description: |-
             状态
 

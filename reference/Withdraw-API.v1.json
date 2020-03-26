@@ -93,7 +93,7 @@
           },
           {
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
             "in": "query",
             "name": "status",
@@ -146,7 +146,7 @@
             "description": "第三方单号"
           },
           "status": {
-            "type": "string",
+            "type": "integer",
             "description": "状态 \n\nid|message\n-|-\n1|提现中\n2|提现成功\n3|提现失败"
           },
           "withdrawType": {
@@ -157,11 +157,11 @@
             "type": "string",
             "description": "平台"
           },
-          "withdrawAmount": {
+          "amount": {
             "type": "string",
             "description": "提现金额"
           },
-          "withdrawCurrency": {
+          "currency": {
             "type": "string",
             "description": "提现币种"
           },
@@ -222,8 +222,8 @@
           "status",
           "withdrawType",
           "platform",
-          "withdrawAmount",
-          "withdrawCurrency",
+          "amount",
+          "currency",
           "targetAmount",
           "targetCurrency",
           "feeAmount",
