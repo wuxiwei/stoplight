@@ -1,0 +1,56 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "WebHook",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {},
+  "components": {
+    "schemas": {
+      "WithdrawWebHook": {
+        "title": "WithdrawWebHook",
+        "type": "object",
+        "description": "WebHook通知\n\n提现事件：WITHDRAW_EVENT_RESPONSE",
+        "properties": {
+          "reqId": {
+            "type": "integer"
+          },
+          "eventName": {
+            "type": "string",
+            "description": "事件名称"
+          },
+          "data": {
+            "type": "object",
+            "required": [
+              "externalTransId",
+              "status"
+            ],
+            "description": "事件对象",
+            "properties": {
+              "externalTransId": {
+                "type": "string",
+                "description": "第三方单号"
+              },
+              "status": {
+                "type": "integer",
+                "description": "状态"
+              }
+            }
+          }
+        },
+        "required": [
+          "eventName",
+          "data"
+        ],
+        "x-tags": [
+          "WebHook"
+        ]
+      }
+    }
+  }
+}
