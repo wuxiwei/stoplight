@@ -45,6 +45,8 @@ paths:
         步骤2：调用获取短信验证码接口获取验证码。
 
         步骤3：调用该提现接口。
+
+        步骤3：WebHook结果通知，事件名称：WITHDRAW_EVENT_RESPONSE。
       requestBody:
         content:
           application/json:
