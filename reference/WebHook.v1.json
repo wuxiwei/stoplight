@@ -12,6 +12,9 @@
         "title": "WithdrawWebHook",
         "type": "object",
         "description": "WebHook通知\n\n提现事件：WITHDRAW_EVENT_RESPONSE",
+        "x-tags": [
+          "WebHook"
+        ],
         "properties": {
           "reqId": {
             "type": "integer"
@@ -22,11 +25,11 @@
           },
           "data": {
             "type": "object",
+            "description": "事件对象",
             "required": [
               "externalTransId",
               "status"
             ],
-            "description": "事件对象",
             "properties": {
               "externalTransId": {
                 "type": "string",
@@ -34,7 +37,7 @@
               },
               "status": {
                 "type": "integer",
-                "description": "状态"
+                "description": "状态\n\nkey|name\n-|-\n2|提现成功\n3|提现失败"
               }
             }
           }
@@ -42,9 +45,6 @@
         "required": [
           "eventName",
           "data"
-        ],
-        "x-tags": [
-          "WebHook"
         ]
       }
     }

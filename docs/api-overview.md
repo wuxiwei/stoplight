@@ -38,21 +38,23 @@ tags: [全局描述]
 
 ### 请求签名
 
-2.  对`HTTP请求方式`、`URI`、`请求epoch时间`（单位秒）、`请求包体`的数据按照一定顺序用字符串“&”做拼接后使用对接方的`RSA私钥`通过`SHA256WithRSA`算法做签名并用`Base64编码`，生成的签名字符串（`signature`）和`epoch`时间放入HTTP包头的`LLPAY-Signature`标签中，格式为：
+2. 对`HTTP请求方式`、`URI`、`请求epoch时间`（单位秒）、`请求包体`的数据按照一定顺序用字符串“&”做拼接后使用对接方的`RSA私钥`通过`SHA256WithRSA`算法做签名并用`Base64编码`，生成的签名字符串（`signature`）和`epoch`时间放入HTTP包头的`LLPAY-Signature`标签中，格式为：
 
 <!---->
 
+
     LLPAY-Signature:t=&lt;&lt;epoch&gt;&gt;,v=&lt;&lt;signature&gt;&gt;
+
 
 **第一步:** 确定签名`payload`
 
 如下字段请用`&`一次连接
 
--   `HTTP_METHOD`: 对应实际接口的方法（统一用大写），如`POST`、`PUT`、`GET`、`DELETE`等；
--   `URI`: 请求的URI地址（除去host）.  例如`https://api.sandbox.lianlianglobal.com/collections/v1/merchants`中`/collections/v1/merchants`为URI
--   `REQUEST_EPOCH`: 是指格林威治时间1970年01月01日00时00分00秒起至现在的总秒数,该值应与`t`值保持一致
--   `REQUEST_PAYLOAD`: 请求包体  `{"currency":"USD"}`
--   `QUERY_STRING`: 查询字段例如：`https://api.sandbox.lianlianglobal.com/collections/v1/merchants?attr1=value1&attr2=value2`,其中`QUERY_STRING`=`attr1=value1&attr2=value2`格式化为`attr1%3Dvalue1%26attr2%3Dvalue2`
+- `HTTP_METHOD`: 对应实际接口的方法（统一用大写），如`POST`、`PUT`、`GET`、`DELETE`等；
+- `URI`: 请求的URI地址（除去host）.  例如`https://api.sandbox.lianlianglobal.com/collections/v1/merchants`中`/collections/v1/merchants`为URI
+- `REQUEST_EPOCH`: 是指格林威治时间1970年01月01日00时00分00秒起至现在的总秒数,该值应与`t`值保持一致
+- `REQUEST_PAYLOAD`: 请求包体  `{"currency":"USD"}`
+- `QUERY_STRING`: 查询字段例如：`https://api.sandbox.lianlianglobal.com/collections/v1/merchants?attr1=value1&attr2=value2`,其中`QUERY_STRING`=`attr1=value1&attr2=value2`格式化为`attr1%3Dvalue1%26attr2%3Dvalue2`
 
  `payload`示例:
 
@@ -62,10 +64,10 @@ tags: [全局描述]
 
 你会用到以下内容:
 
--   REQUEST_EPOCH (Seconds elapsed since 1970/1/1 00:00:00 GMT as a string)
--   连接字符串 `,`
--   payload（第一步的结果）
--   your_rsa_pri_key：你的RSA私钥
+- REQUEST_EPOCH (Seconds elapsed since 1970/1/1 00:00:00 GMT as a string)
+- 连接字符串 `,`
+- payload（第一步的结果）
+- your_rsa_pri_key：你的RSA私钥
 
 <!---->
 
@@ -82,22 +84,22 @@ tags: [全局描述]
     Cache-Control: no-cache 
     Content-Length: 18 
     Connection: keep-alive 
-
+    
     {"currency":"USD"} 
 
 ### 请求结果签名验证
 
 -   若请求成功返回200，包体格式查看具体接口，对响应包体使用连连支付的RSA私钥用SHA256WithRSA做签名并用Base64编码，生成的签名字符串放入HTTP包头LLPAY-Signature标签中，格式为LLPAY-Signature: t = response_epoch, v = signature。
     其中：
--   t=响应时间戳(格林威治时间1970年01月01日00时00分00秒起至现在的总秒数)
--   v=BASE64_ENCODE(SHA256WithRSA(RESPONSE_EPOCH&RESPONSE_BODY, LLPAY_RSA_PRIVATE_KEY))
+- t=响应时间戳(格林威治时间1970年01月01日00时00分00秒起至现在的总秒数)
+- v=BASE64_ENCODE(SHA256WithRSA(RESPONSE_EPOCH&RESPONSE_BODY, LLPAY_RSA_PRIVATE_KEY))
 
 **第一步:** 确定 `payload`
 
 如下字段创建`payload`用 `&` 做连接
 
--   Response Timestamp: 响应时间戳(格林威治时间1970年01月01日00时00分00秒起至现在的总秒数)
--   Response Payload: 响应包体，指定为JSON字符串如： `{"currency":"USD"}`
+- Response Timestamp: 响应时间戳(格林威治时间1970年01月01日00时00分00秒起至现在的总秒数)
+- Response Payload: 响应包体，指定为JSON字符串如： `{"currency":"USD"}`
 
 `payload`示例:
 
@@ -145,7 +147,7 @@ LLPAY-Signature:t=1574130398,v=b0VbG4uGA69gR4T1FFc7NzqbiBoDEOBvkQtJXytQd7dY+WDo0
     Content-Type: application/json
     Content-Length: 77
     Connection: keep-alive
-
+    
     {"code":"999995","message":"[holderType] is invalid"}
 
 ### HTTP状态码一览表
@@ -175,7 +177,7 @@ LLPAY-Signature:t=1574130398,v=b0VbG4uGA69gR4T1FFc7NzqbiBoDEOBvkQtJXytQd7dY+WDo0
 连连所有的字段命名规范为驼峰式:
 
     https://api...com/resource/?filterBy="filter"
-
+    
     {
       "storeName": "My Store",
       "kycStatus": "success"
