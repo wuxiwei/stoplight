@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Shop API
+  title: 店铺API
   version: '1.0'
-  description: 店铺API
+  description: ''
 servers:
   - url: 'https://global-api-sandbox.lianlianpay-inc.com/collection/v1'
     description: Sandbox
@@ -12,8 +12,6 @@ paths:
   /shops:
     get:
       summary: 获取店铺列表
-      tags:
-        - shop
       responses:
         '200':
           description: OK
@@ -94,13 +92,13 @@ paths:
           name: pageNum
           description: 页码
           required: true
+      tags:
+        - 店铺API
 components:
   schemas:
     ShopInfo:
-      title: ShopInfo
+      title: 店铺信息对象
       type: object
-      x-tags:
-        - shop
       description: ''
       properties:
         platformId:
@@ -185,3 +183,5 @@ components:
         - accountInfo
         - createTime
         - modifyTime
+      x-tags:
+        - MODELS

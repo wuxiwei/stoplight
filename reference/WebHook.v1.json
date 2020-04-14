@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "WebHook",
+    "title": "WebHook事件",
     "version": "1.0"
   },
   "servers": [],
@@ -9,12 +9,9 @@
   "components": {
     "schemas": {
       "WithdrawWebHook": {
-        "title": "WithdrawWebHook",
+        "title": "提现通知对象",
         "type": "object",
         "description": "WebHook通知\n\n提现事件：WITHDRAW_EVENT_RESPONSE",
-        "x-tags": [
-          "WebHook"
-        ],
         "properties": {
           "reqId": {
             "type": "integer"
@@ -45,6 +42,9 @@
         "required": [
           "eventName",
           "data"
+        ],
+        "x-tags": [
+          "MODELS"
         ]
       }
     }

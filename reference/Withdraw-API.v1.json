@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Withdraw-API",
+    "title": "提现API",
     "version": "1.0",
-    "description": "提现API"
+    "description": ""
   },
   "servers": [
     {
@@ -19,9 +19,6 @@
     "/withdraws": {
       "get": {
         "summary": "获取提现列表",
-        "tags": [
-          "withdraw"
-        ],
         "responses": {},
         "operationId": "get-withdraws",
         "description": "接口聚合了店铺、多比、提前宝提现列表查询，结果按创建时间排序。",
@@ -127,19 +124,19 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "提现API"
+        ]
       }
     }
   },
   "components": {
     "schemas": {
       "WithdrawInfo": {
-        "title": "WithdrawInfo",
+        "title": "提现单对象",
         "type": "object",
         "description": "",
-        "x-tags": [
-          "withdraw"
-        ],
         "properties": {
           "externalTransId": {
             "type": "string",
@@ -246,14 +243,14 @@
           "withdrawDetailList",
           "feeRate",
           "creditFeeAmount"
+        ],
+        "x-tags": [
+          "MODELS"
         ]
       },
       "WithdrawDetail": {
-        "title": "WithdrawDetail",
+        "title": "提现明细对象",
         "type": "object",
-        "x-tags": [
-          "withdraw"
-        ],
         "properties": {
           "id": {
             "type": "string",
@@ -302,6 +299,9 @@
           "actualFeeAmount",
           "feeCurrency",
           "creditFeeAmount"
+        ],
+        "x-tags": [
+          "MODELS"
         ]
       }
     }

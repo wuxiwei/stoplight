@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Wallet API
+  title: 多比钱包API
   version: '1.0'
-  description: 多比API
+  description: ''
 servers:
   - url: 'https://global-api-sandbox.lianlianpay-inc.com/collection/v1'
     description: Sandbox
@@ -82,13 +82,11 @@ paths:
                 - externalTransId
         description: ''
       tags:
-        - wallet
+        - 多比钱包API
     parameters: []
   '/wallets/currency/{currency}':
     get:
       summary: 获取多比钱包账号余额信息
-      tags:
-        - wallet
       responses:
         '200':
           description: OK
@@ -130,6 +128,8 @@ paths:
       operationId: get-currency
       description: 获取指定币种多比钱包信息以及余额。
       parameters: []
+      tags:
+        - 多比钱包API
     parameters:
       - schema:
           type: string
@@ -187,7 +187,7 @@ paths:
             examples: {}
         description: ''
       tags:
-        - wallet
+        - 多比钱包API
     get:
       summary: 获取多比钱包转入记录
       operationId: get-recharge
@@ -280,16 +280,14 @@ paths:
           name: externalTransId
           description: 第三方单号
       tags:
-        - wallet
+        - 多比钱包API
     parameters: []
 components:
   schemas:
     RechargeDetail:
-      title: RechargeDetail
+      title: 充值明细对象
       type: object
-      description: 充值明细
-      x-tags:
-        - wallet
+      description: ''
       properties:
         shopAccountId:
           type: string
@@ -300,3 +298,5 @@ components:
       required:
         - shopAccountId
         - amount
+      x-tags:
+        - MODELS
